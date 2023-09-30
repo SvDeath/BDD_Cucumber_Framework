@@ -13,5 +13,89 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
+<!-- to perform parallel test in local -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <!--<threadCount>4</threadCount> -->
+                    <perCoreThreadCount>false</perCoreThreadCount>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <includes>
+                    <include>**/Runner*.java</include>
+                    </includes>
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependencies>
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.10.0</version>
+    </dependency>
+
+    <!-- library to generate a fake data -->
+    <dependency>
+        <groupId>com.github.javafaker</groupId>
+        <artifactId>javafaker</artifactId>
+        <version>1.0.2</version>
+    </dependency>
+
+
+    <!--used for behavior-driven development (BDD) and automated testing in Java applications. -->
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>7.13.0</version>
+        <scope>test</scope> <!--The dependency is only available during the test phase of your build process.
+        It won't be included in your application when it's packaged for production. This is useful for libraries
+        and tools that are needed for testing but are not required at runtime in your application. -->
+    </dependency>
+
+
+    <!-- Cucumber-JUnit library, which is an integration between Cucumber and JUnit
+    Cucumber consists of multiple modules, with cucumber-java being the core library for writing Cucumber scenarios
+     in Java, and cucumber-junit being an integration with JUnit to run Cucumber tests using JUnit-->
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>7.13.0</version>
+        <scope>test</scope>
+    </dependency>
+
+<!-- for pretty report from cucumber detailed HTML reports-->
+    <dependency>
+        <groupId>me.jvt.cucumber</groupId>
+        <artifactId>reporting-plugin</artifactId>
+        <version>7.11.0</version>
+    </dependency>
+
+    <!--JUnit is commonly used for writing and running unit tests in Java applications.-->
+    <!-- These dependencies include Cucumber with JUnit support (cucumber-junit) and the core Cucumber library
+    for Java (cucumber-java). Both of these dependencies already include the compatible version of JUnit
+    that works with Cucumber 7.13.0, so you don't need to explicitly specify a separate JUnit dependency.-->
+    <!--<dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+    </dependency> -->
+
+
+
+</dependencies>
+
+
+
+
+
 </project>
